@@ -1,0 +1,9 @@
+dist/
+.vscode/
+.serverless/
+coverage/
+config/
+build/
+webpack.config.js
+jest.int.config.ts
+

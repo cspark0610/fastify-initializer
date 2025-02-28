@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: mailing-maps-bff
+  description: micoservicio para el manejo de mapas de envios
+  tags:
+    - nodejs
+    - backend
+    - typescript
+    - fastify
+    - eks
+    - kubernetes
+spec:
+  type: service
+  lifecycle: production
+  system: origination-app
+  owner: It-Acquisition
