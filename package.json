@@ -6,7 +6,6 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_CONFIG_ENV=dev ENVIRONMENT=LOCAL nodemon exec",
-    "tst": "cross-env NODE_CONFIG_ENV=tst ENVIRONMENT=LOCAL nodemon exec",
     "stg": "cross-env NODE_CONFIG_ENV=stg ENVIRONMENT=LOCAL nodemon exec",
     "start": "node ./dist/main.js",
     "test": "jest --detectOpenHandles",
