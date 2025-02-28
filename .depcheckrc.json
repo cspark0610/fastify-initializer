@@ -1,0 +1,19 @@
+{
+  "ignores": [
+    "@types/node",
+    "@types/jest",
+    "sinon",
+    "@types/sinon",
+    "webpack-cli",
+    "eslint-plugin-node",
+    "eslint-plugin-prettier",
+    "eslint-config-prettier",
+    "ts-node",
+    "husky",
+    "pino-pretty",
+    "dependency-check",
+    "pino",
+    "pino-pretty",
+    "js-yaml"
+  ]
+}

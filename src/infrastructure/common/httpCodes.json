@@ -1,0 +1,47 @@
+{
+  "success": {
+    "code": 200
+  },
+  "firmNOK": {
+    "code": 200,
+    "success": false,
+    "message": "too many checks."
+  },
+  "firmOK": {
+    "code": 200,
+    "success": true,
+    "message": "code verified succefully."
+  },
+  "badValidation": {
+    "code": 202,
+    "message": "bad validation"
+  },
+  "badRequest": {
+    "code": 400,
+    "message": "bad request"
+  },
+  "unauthorized": {
+    "code": 401,
+    "message": "unauthorized"
+  },
+  "resourseNotFound": {
+    "code": 404,
+    "message": "resourseNotFound"
+  },
+  "robustFirmNotFound": {
+    "code": 405,
+    "message": "resourseNotFound"
+  },
+  "unsupportedMediaType": {
+    "code": 415,
+    "message": "unsupportedMediaType"
+  },
+  "tooManyRequests": {
+    "code": 429,
+    "message": "too many requests."
+  },
+  "internalServerError": {
+    "code": 500,
+    "message": "internal server error"
+  }
+}

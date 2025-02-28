@@ -76,3 +76,5 @@ retire-report.txt
 
 #helm-chart build
 charts-output/
+
+.vscode

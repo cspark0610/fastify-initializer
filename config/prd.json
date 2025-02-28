@@ -1,0 +1,16 @@
+{
+  "logger": {
+    "format": "prod",
+    "level": "info"
+  },
+  "dependencies": {},
+  "services": {
+    "Storage": {
+      "DynamoDB": {
+        "tables": {}
+      }
+    }
+  },
+  "secrets": {},
+  "environment": "dev"
+}

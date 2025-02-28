@@ -1,0 +1,8 @@
+{
+  "logger": {
+    "format": "dev"
+  },
+  "dependencies": {},
+  "keepAliveTimeout": 30,
+  "keepAliveMaxRequests": 50
+}
