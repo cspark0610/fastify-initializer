@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable n/no-process-exit */
 import fastify, { FastifyInstance } from 'fastify';
@@ -10,6 +9,9 @@ import routes from './infrastructure/routes';
 import { globalErrorHandler } from './domain/errors/globalError.handler';
 import JoiCompiler from 'joi-compiler';
 import { LoggerClass } from './utils/logger/loggerClass';
+import { errorDictionary, UnauthorizedError } from './domain/errors/errors.dictionary';
+import { asyncLocalStorage } from './utils/als';
+import jwt from 'jsonwebtoken';
 
 export class Server {
   private server: FastifyInstance;
@@ -35,6 +37,27 @@ export class Server {
     });
   }
 
+  private authHook(req, _reply, done: () => void) {
+    const unauthorizedName = errorDictionary.get(UnauthorizedError.name)!.name;
+    const authorization = req.headers['authorization'] || (req.headers['Authorization'] as string);
+    if (!authorization) {
+      throw new UnauthorizedError(unauthorizedName, 'Token missing in headers...');
+    }
+    const token = authorization.split(' ')[1];
+
+    const decoded = jwt.decode(token!);
+    if (!decoded || !decoded['session_id']) {
+      throw new UnauthorizedError(unauthorizedName, 'Token is invalid...');
+    }
+
+    const sessionId = decoded['session_id'];
+
+    const store = { sessionId };
+    asyncLocalStorage.run(store, async () => {
+      done();
+    });
+  }
+
   public async start(configStart: { host: string; port: number }) {
     this.configServer();
 
@@ -57,9 +80,7 @@ export class Server {
   }
 
   private configServer() {
-    // this.server.register(decorateReqWithGetObservabilityHeaders);
-    // this.server.addHook('onRequest', verifyToken);
-    // this.server.addHook('onResponse', onResponseHook);
+    this.server.addHook('onRequest', this.authHook);
 
     makePromisesSafe.logError = (err) => {
       this.server.log.error(err, 'UNHANDLER_ERROR_MESSAGE');
