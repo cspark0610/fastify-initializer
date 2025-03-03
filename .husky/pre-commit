@@ -3,3 +3,4 @@
 
 # ejecutar con node v>18
 npm run format-check
+npm run lint
